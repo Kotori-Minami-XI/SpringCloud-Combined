@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/OrderModule-1/pom.xml" />
         <option value="$PROJECT_DIR$/StockModule-1/pom.xml" />
         <option value="$PROJECT_DIR$/Feign-Zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/Eureka-Zuul/pom.xml" />
       </list>
     </option>
   </component>

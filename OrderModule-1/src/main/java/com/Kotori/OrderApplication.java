@@ -1,6 +1,7 @@
 package com.Kotori;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 @EnableHystrixDashboard
 @EnableTurbine
+@MapperScan("com.Kotori.mapper")
 public class OrderApplication {
     public static void main(String[] args) {
         SpringApplication.run(OrderApplication.class);

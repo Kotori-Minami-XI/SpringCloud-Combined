@@ -15,6 +15,7 @@ public class OrderController {
     @ResponseBody
     public String createOrder(@PathVariable Long productId) {
         Order order = orderService.createOrder(productId);
+        orderService.insertOrder(order);
         orderService.notifyUpdateStock(order);
         return "商品" + productId + "已下单";
     }

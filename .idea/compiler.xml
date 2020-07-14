@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="StockModule-1" />
-        <module name="Eureka-Server" />
         <module name="Eureka-Zuul" />
+        <module name="Eureka-Server" />
         <module name="OrderModule-1" />
+        <module name="StockModule-1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

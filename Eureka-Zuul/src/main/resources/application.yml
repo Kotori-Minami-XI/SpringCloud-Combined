@@ -8,11 +8,11 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:8000/eureka
+      defaultZone: http://localhost:8000/eureka
   instance:
-    instance-id: gateway-zuul-10000
+    instance-id: gateway-zuul-10001
     prefer-ip-address: true          # 当调用getHostname获取实例的hostname时，返回ip而不是host名称
-    ip-address: 127.0.0.1            # 指定自己的ip信息，不指定的话会自己寻找
+    ip-address: localhost            # 指定自己的ip信息，不指定的话会自己寻找
 
 feign:
   hystrix:
@@ -24,4 +24,5 @@ zuul:
   routes:
     use-routing:
       sensitive-headers:             # 允许cookie等敏感信息传递过来
-    order-microservice-group: /buy/**
+    order-microservice-group: /order/**
+    stock-microservice-group: /stock/**
