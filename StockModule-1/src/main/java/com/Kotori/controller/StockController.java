@@ -14,8 +14,12 @@ public class StockController {
      * http://127.0.0.1:8001/reduceStock/111
      */
     @RequestMapping("/reduceStock/{productId}")
-    public String reduceStock(@PathVariable Long productId) {
-        stockService.updateStock(productId, -1);
+    public String reduceStock(@PathVariable Long productId) throws Exception {
+        try {
+            stockService.updateStock(productId, -1);
+        } catch (Exception e) {
+            return "ERROR";
+        }
         return "库存更新成功,产品号为" + productId;
     }
 

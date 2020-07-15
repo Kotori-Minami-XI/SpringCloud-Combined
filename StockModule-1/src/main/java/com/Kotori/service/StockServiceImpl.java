@@ -13,10 +13,10 @@ public class StockServiceImpl implements StockService{
 
     @Override
     @Transactional
-    public void updateStock(Long productId, int delta) throws RuntimeException{
+    public void updateStock(Long productId, int delta) throws Exception {
         Long stockNum = getStockNumById(productId);
         if (stockNum <= 0) {
-            throw new RuntimeException("库存不足！下单失败");
+            throw new Exception("库存不足！下单失败");
         }
         stockMapper.updateStockById(productId, delta);
     }

@@ -13,7 +13,13 @@ public class OrderController {
     @RequestMapping("/buy/{productId}")
     @ResponseBody
     public String buy(@PathVariable Long productId) {
-        return orderService.generateOrder(productId);
+        String result = null;
+        try {
+            result = orderService.generateOrder(productId);
+        } catch (RuntimeException e) {
+            return "库存系统发现库存不够，下单失败";
+        }
+        return result;
     }
 
     @RequestMapping("/test")

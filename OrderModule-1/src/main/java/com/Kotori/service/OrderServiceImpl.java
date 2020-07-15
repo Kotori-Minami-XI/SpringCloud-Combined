@@ -18,10 +18,14 @@ public class OrderServiceImpl implements OrderService {
     // ###################################### 公有方法 ###############################################
     @Override
     @Transactional
-    public String generateOrder(Long productId) {
+    public String generateOrder(Long productId) throws RuntimeException{
         Order order = this.createOrder(productId);
         this.insertOrder(order);
-        return this.notifyReduceStock(order); //远程调用StockModule更新库存
+        String result = this.notifyReduceStock(order); //远程调用StockModule更新库存
+        if("ERROR".equals(result)) {
+            throw new RuntimeException("库存系统发现库存不够，下单失败");
+        }
+        return result;
     }
 
     @Override

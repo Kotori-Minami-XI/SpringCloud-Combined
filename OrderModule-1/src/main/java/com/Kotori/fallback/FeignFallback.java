@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 public class FeignFallback implements StockFeignClient {
     @Override
     public String reduceStock(Long orderId) {
-        System.out.println("reduceStock-降级方法------由于库存不足下单失败!");
+        System.out.println("reduceStock-降级方法------!");
         if (true) {
-            throw new RuntimeException("reduceStock-降级方法------由于库存不足下单失败-------");
+            throw new RuntimeException("reduceStock-降级方法-------------");
         }
-        return "reduceStock-降级方法------由于库存不足下单失败!";
+        return "reduceStock-降级方法------!";
     }
 
     @Override
