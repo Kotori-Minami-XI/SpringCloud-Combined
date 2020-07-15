@@ -33,6 +33,10 @@ eureka:
     prefer-ip-address: true # 当调用getHostname获取实例的hostname时，返回ip而不是host名称
     ip-address: localhost # 指定自己的ip信息，不指定的话会自己寻找
 
+feign:
+  hystrix:
+    enabled: true # 允许feign的降级操作
+
 hystrix:
   command:
     default:

@@ -7,12 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 @Service
-@Transactional
 public class StockServiceImpl implements StockService{
     @Resource
     private StockMapper stockMapper;
 
     @Override
+    @Transactional
     public void updateStock(Long productId, int delta) throws RuntimeException{
         Long stockNum = getStockNumById(productId);
         if (stockNum <= 0) {

@@ -1,6 +1,5 @@
 package com.Kotori.controller;
 
-import com.Kotori.domain.Order;
 import com.Kotori.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,13 +10,10 @@ public class OrderController {
     @Autowired
     private OrderServiceImpl orderService;
 
-    @RequestMapping("/createOrder/{productId}")
+    @RequestMapping("/buy/{productId}")
     @ResponseBody
-    public String createOrder(@PathVariable Long productId) {
-        Order order = orderService.createOrder(productId);
-        orderService.insertOrder(order);
-        orderService.notifyReduceStock(order); //远程调用StockModule更新库存
-        return "商品" + productId + "已下单";
+    public String buy(@PathVariable Long productId) {
+        return orderService.generateOrder(productId);
     }
 
     @RequestMapping("/test")

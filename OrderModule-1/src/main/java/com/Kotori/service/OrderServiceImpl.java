@@ -9,31 +9,40 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 @Service
-@Transactional
 public class OrderServiceImpl implements OrderService {
     @Resource
     private StockFeignClient stockFeignClient;
 
     @Resource
     private OrderMapper orderMapper;
-
-    public void notifyReduceStock(Order order) {
-        stockFeignClient.reduceStock(order.getProductId());
+    // ###################################### 公有方法 ###############################################
+    @Override
+    @Transactional
+    public String generateOrder(Long productId) {
+        Order order = this.createOrder(productId);
+        this.insertOrder(order);
+        return this.notifyReduceStock(order); //远程调用StockModule更新库存
     }
 
-    public Order createOrder(Long productId) {
-        Order order = new Order();
-        order.setProductId(productId);
-        return order;
-    }
-
+    @Override
+    @Transactional
     public void test() {
         String s = stockFeignClient.test();
         System.out.println(s);
     }
 
-    @Override
-    public void insertOrder(Order order) {
+    // ###################################### 私有方法 ###############################################
+    private String notifyReduceStock(Order order) {
+        return stockFeignClient.reduceStock(order.getProductId());
+    }
+
+    private Order createOrder(Long productId) {
+        Order order = new Order();
+        order.setProductId(productId);
+        return order;
+    }
+
+    private void insertOrder(Order order) {
         orderMapper.insertOrder(order);
     }
 }
