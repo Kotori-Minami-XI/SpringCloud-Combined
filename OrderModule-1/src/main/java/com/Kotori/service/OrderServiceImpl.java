@@ -4,10 +4,12 @@ import com.Kotori.domain.Order;
 import com.Kotori.mapper.OrderMapper;
 import com.Kotori.rpc.StockFeignClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
     @Resource
     private StockFeignClient stockFeignClient;
@@ -15,8 +17,8 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private OrderMapper orderMapper;
 
-    public void notifyUpdateStock(Order order) {
-        stockFeignClient.updateStock(order.getProductId());
+    public void notifyReduceStock(Order order) {
+        stockFeignClient.reduceStock(order.getProductId());
     }
 
     public Order createOrder(Long productId) {

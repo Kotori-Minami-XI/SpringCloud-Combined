@@ -16,7 +16,7 @@ public class OrderController {
     public String createOrder(@PathVariable Long productId) {
         Order order = orderService.createOrder(productId);
         orderService.insertOrder(order);
-        orderService.notifyUpdateStock(order);
+        orderService.notifyReduceStock(order); //远程调用StockModule更新库存
         return "商品" + productId + "已下单";
     }
 
