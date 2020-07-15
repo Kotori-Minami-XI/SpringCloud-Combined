@@ -4,6 +4,26 @@ server:
 spring:
   application:
     name: stock-microservice-group # 应用名称，会在Eureka中显示
+  mvc:
+    servlet:
+      load-on-startup: 1
+    static-path-pattern: /static/**
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_combined_db?characterEncoding=utf-8&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+    password: 19926172xz
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+  cloud:
+    circuitbreaker:
+      hystrix:
+        enabled: true
+
+mybatis:
+  mapper-locations: mapper/*.xml
 
 eureka:
   client:
